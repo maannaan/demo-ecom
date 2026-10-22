@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #08080a;
+    --bg-surface: #0f0f13;
+    --bg-card: #15151b;
+    --bg-card-hover: #1c1c24;
+    --border-dim: rgba(255, 255, 255, 0.08);
+    --border-bright: rgba(255, 255, 255, 0.18);
+    --accent-lime: #d4ff00;
+    --accent-lime-glow: rgba(212, 255, 0, 0.25);
+    --text-primary: #f4f4f6;
+    --text-secondary: #9a9aa3;
+    --text-muted: #5f5f69;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    background-color: #08080a;
+  }
+
+  body {
+    background-color: #08080a;
+    color: #f4f4f6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Editorial Headings */
+  h1, h2, h3, .font-editorial {
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  /* Technical / Monospace Details */
+  .font-mono-tech {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.01em;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #23232b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4ff00;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(15, 15, 19, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-subtle {
+  background: rgba(10, 10, 13, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-glow {
+  background: rgba(15, 15, 19, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 255, 0, 0.2);
+  box-shadow: 0 0 30px rgba(212, 255, 0, 0.08);
+}
+
+/* Editorial Grain Overlay */
+.editorial-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scanline / Grid line effect */
+.grid-mesh {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Accent pulse keyframes */
+@keyframes limePulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 255, 0, 0.6);
+  }
+}
+
+.animate-lime-pulse {
+  animation: limePulse 3s infinite ease-in-out;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
