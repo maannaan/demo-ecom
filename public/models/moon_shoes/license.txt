@@ -1,0 +1,11 @@
+Model Information:
+* title:	Moon Shoes
+* source:	https://sketchfab.com/3d-models/moon-shoes-64dde6460d574fabb55b358b4f57c7ad
+* author:	mironov (https://sketchfab.com/mironovs)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Moon Shoes" (https://sketchfab.com/3d-models/moon-shoes-64dde6460d574fabb55b358b4f57c7ad) by mironov (https://sketchfab.com/mironovs) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,300 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 11177,
+      "max": [
+        23.052600860595703,
+        17.238258361816406,
+        12.802522659301758
+      ],
+      "min": [
+        8.933500289916992,
+        -2.034663677215576,
+        -16.96007537841797
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 134124,
+      "componentType": 5126,
+      "count": 11177,
+      "max": [
+        0.9999942779541016,
+        0.9996092319488525,
+        0.9994224905967712
+      ],
+      "min": [
+        -0.99985271692276,
+        -0.9999992251396179,
+        -0.9999058246612549
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 11177,
+      "max": [
+        0.99997878074646,
+        0.9998137354850769,
+        0.9997400045394897,
+        1.0
+      ],
+      "min": [
+        -0.9999968409538269,
+        -0.9999773502349854,
+        -0.9993880987167358,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 11177,
+      "max": [
+        0.9767606854438782,
+        0.990402102470398
+      ],
+      "min": [
+        0.0015386193990707397,
+        0.0015386332524940372
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 44475,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Vishakh.Jethva (https://sketchfab.com/Vishakh.Jethva)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/footwear-fantasia-3394ee8e40274942ac1b16561ccc4618",
+      "title": "Footwear Fantasia"
+    },
+    "generator": "Sketchfab-16.12.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 177900,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 89416,
+      "byteOffset": 177900,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 268248,
+      "byteOffset": 267316,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 178832,
+      "byteOffset": 535564,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 714396,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_specular"
+  ],
+  "images": [
+    {
+      "uri": "textures/Shoes_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/Shoes_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Shoes_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "specularFactor": 1.0
+        }
+      },
+      "name": "Shoes",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Cat_boot2_Low_Shoes_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.35681676864624023,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        7.922923842468071e-17,
+        -0.35681676864624023,
+        0.0,
+        0.0,
+        0.35681676864624023,
+        7.922923842468071e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "255e6ff39818461396fba8260311efa5.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        2.4861751999032693,
+        5.782446964994229e-08,
+        0.5201275628144668,
+        0.0,
+        -7.933462090235612e-08,
+        2.5399999618530242,
+        9.683319992427761e-08,
+        0.0,
+        -0.5201275628144639,
+        -1.1102693993350705e-07,
+        2.486175199903268,
+        0.0,
+        -39.470272064208984,
+        5.141237735748291,
+        -5.852550983428955,
+        1.0
+      ],
+      "name": "Cat_boot2_Low"
+    },
+    {
+      "mesh": 0,
+      "name": "Cat_boot2_Low_Shoes_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Footwear Fantasia
+* source:	https://sketchfab.com/3d-models/footwear-fantasia-3394ee8e40274942ac1b16561ccc4618
+* author:	Vishakh.Jethva (https://sketchfab.com/Vishakh.Jethva)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Footwear Fantasia" (https://sketchfab.com/3d-models/footwear-fantasia-3394ee8e40274942ac1b16561ccc4618) by Vishakh.Jethva (https://sketchfab.com/Vishakh.Jethva) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

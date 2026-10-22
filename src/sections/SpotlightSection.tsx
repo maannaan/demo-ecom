@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import { ProductViewer } from '../components/3d/ProductViewer';
 import { PRODUCTS } from '../data/products';
+import { AVAILABLE_3D_MODELS } from '../data/modelsRegistry';
+import type { Available3DModel } from '../data/modelsRegistry';
 import { useCart } from '../context/CartContext';
-import { ShoppingBag, Check, Layers, Cpu, Compass, Sparkles } from 'lucide-react';
+import { ShoppingBag, Check, Layers, Cpu, Compass, Sparkles, Box } from 'lucide-react';
 
 export const SpotlightSection: React.FC = () => {
   const voidRunner = PRODUCTS.find(p => p.id === 'void-runner') || PRODUCTS[0];
   const { addToCart } = useCart();
 
+  const [selectedModel, setSelectedModel] = useState<Available3DModel>(AVAILABLE_3D_MODELS[0]);
   const [activeColorway, setActiveColorway] = useState(voidRunner.availableColors[0]);
   const [selectedSize, setSelectedSize] = useState(voidRunner.sizes[1] || 'UK 8');
   const [activeTab, setActiveTab] = useState<'specs' | 'features'>('specs');
 
   const handleAddToCart = () => {
-    addToCart(voidRunner, activeColorway, selectedSize, 1);
+    // If a custom 3D model is selected, adapt the item details
+    const customProduct = {
+      ...voidRunner,
+      id: selectedModel.isProcedural ? voidRunner.id : `3d-${selectedModel.id}`,
+      name: selectedModel.name,
+      description: selectedModel.description
+    };
+    addToCart(customProduct, activeColorway, selectedSize, 1);
   };
 
   return (
@@ -23,19 +33,39 @@ export const SpotlightSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="mb-10 sm:mb-14">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-[#d4ff00] animate-pulse" />
-            <span className="text-xs font-mono-tech tracking-widest text-[#d4ff00] uppercase">
-              INTERACTIVE 3D CAD SHOWROOM
-            </span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#d4ff00] animate-pulse" />
+              <span className="text-xs font-mono-tech tracking-widest text-[#d4ff00] uppercase">
+                INTERACTIVE 3D CAD & SCAN SHOWROOM
+              </span>
+            </div>
+            <h2 className="text-4xl sm:text-6xl font-black font-editorial tracking-tight text-white uppercase">
+              {selectedModel.name}
+            </h2>
+            <p className="text-sm sm:text-base text-white/60 max-w-2xl mt-3 leading-relaxed">
+              {selectedModel.description}
+            </p>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-black font-editorial tracking-tight text-white uppercase">
-            VOID RUNNER // SPOTLIGHT
-          </h2>
-          <p className="text-sm sm:text-base text-white/60 max-w-2xl mt-3 leading-relaxed">
-            Manipulate the spatial model in real time. Inspect the articulated sole architecture, toggle topology, and witness real-time material calibration across our three custom colorways.
-          </p>
+
+          {/* Model Switcher Pills */}
+          <div className="flex flex-wrap gap-2">
+            {AVAILABLE_3D_MODELS.map(model => (
+              <button
+                key={model.id}
+                onClick={() => setSelectedModel(model)}
+                className={`px-3.5 py-2 text-xs font-mono-tech uppercase tracking-wider rounded-xl transition-all duration-200 flex items-center gap-2 ${
+                  selectedModel.id === model.id
+                    ? 'bg-[#d4ff00] text-black font-bold shadow-[0_0_15px_rgba(212,255,0,0.3)]'
+                    : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10 border border-white/10'
+                }`}
+              >
+                <Box size={13} />
+                <span>{model.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Showcase Grid: Left 3D Interactive Canvas, Right Product Configuration Engine */}
@@ -43,42 +73,46 @@ export const SpotlightSection: React.FC = () => {
           {/* 3D Viewer Container (7 cols) */}
           <div className="lg:col-span-7 flex flex-col">
             <div className="relative w-full h-[420px] sm:h-[500px] lg:h-[580px] rounded-2xl bg-gradient-to-b from-[#101015] to-[#0a0a0d] border border-white/10 shadow-2xl overflow-hidden flex items-center justify-center">
-              <ProductViewer activeColorway={activeColorway.name} />
+              <ProductViewer
+                activeColorway={activeColorway.name}
+                selectedModel={selectedModel}
+                onSelectModel={setSelectedModel}
+              />
             </div>
 
             {/* Micro Coordinates Bar beneath viewer */}
-            <div className="mt-3 flex flex-wrap items-center justify-between text-[11px] font-mono-tech text-white/40 px-2">
+            <div className="mt-3 flex flex-wrap items-center justify-between text-[11px] font-mono-tech text-white/40 px-2 gap-2">
               <span className="flex items-center gap-1.5">
                 <Compass size={12} className="text-[#d4ff00]" />
                 ORBIT: 360° SPATIAL GIMBAL
               </span>
               <span>RENDER: WEBGL 2.0 PBR PIPELINE</span>
-              <span className="text-[#d4ff00]">POLYGONS: DYNAMIC LOD</span>
+              <span className="text-[#d4ff00]">SOURCE: {selectedModel.authorNote || 'LAB CAD'}</span>
             </div>
           </div>
 
           {/* Configuration Panel (5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between bg-[#0e0e13] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
             <div>
-              {/* Product Title and Price */}
+              {/* Product Category and Price */}
               <div className="flex justify-between items-baseline mb-2">
                 <span className="text-xs uppercase font-mono-tech tracking-widest text-[#d4ff00]">
-                  FOOTWEAR // DROP 001
+                  {selectedModel.category.toUpperCase()} // 3D ASSET
                 </span>
                 <span className="text-2xl font-mono-tech font-bold text-white">
                   {voidRunner.formattedPrice}
                 </span>
               </div>
 
-              <h3 className="text-3xl sm:text-4xl font-bold font-editorial text-white mb-3">
-                {voidRunner.name}
+              <h3 className="text-2xl sm:text-3xl font-bold font-editorial text-white mb-3">
+                {selectedModel.name}
               </h3>
 
               <p className="text-sm text-white/70 leading-relaxed mb-6">
-                {voidRunner.description}
+                {selectedModel.description}
               </p>
 
-              {/* 3 Interactive Colorways */}
+              {/* 3 Interactive Colorways (Active for Procedural or Tint for GLTF) */}
               <div className="mb-6 pb-6 border-b border-white/10">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-xs uppercase font-mono-tech tracking-wider text-white/60">

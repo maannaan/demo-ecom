@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HeroScene } from '../components/3d/HeroScene';
-import { ArrowDown, ArrowUpRight, Sparkles, Shield, Compass } from 'lucide-react';
+import { AVAILABLE_3D_MODELS } from '../data/modelsRegistry';
+import { ArrowDown, ArrowUpRight, Sparkles, Shield, Compass, RefreshCw } from 'lucide-react';
 
 interface HeroSectionProps {
   onExploreClick: () => void;
@@ -11,6 +12,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreClick,
   onDiscoverFormClick
 }) => {
+  const [activeModelIndex, setActiveModelIndex] = useState(0);
+  const activeModel = AVAILABLE_3D_MODELS[activeModelIndex];
+
+  const cycleModel = () => {
+    setActiveModelIndex(prev => (prev + 1) % AVAILABLE_3D_MODELS.length);
+  };
+
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-between pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#08080a]">
       {/* Background Architectural Mesh & Subtle Radial Glow */}
@@ -91,8 +99,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <span className="text-[10px] uppercase font-mono-tech tracking-wider text-white/40">BALLISTIC MEMBRANE</span>
             </div>
             <div>
-              <span className="block text-2xl font-bold font-editorial text-white">100%</span>
-              <span className="text-[10px] uppercase font-mono-tech tracking-wider text-white/40">LOCAL SANDBOX 3D</span>
+              <span className="block text-2xl font-bold font-editorial text-white">4</span>
+              <span className="text-[10px] uppercase font-mono-tech tracking-wider text-white/40">3D MODELS LOADED</span>
             </div>
           </div>
         </div>
@@ -101,22 +109,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="lg:col-span-5 relative w-full h-[380px] sm:h-[460px] lg:h-[580px] flex items-center justify-center">
           {/* Interactive 3D Canvas */}
           <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
-            <HeroScene colorway="Obsidian" />
+            <HeroScene
+              colorway="Obsidian"
+              selectedModel={activeModel}
+            />
           </div>
 
-          {/* Interactive Floating Badge */}
-          <div className="absolute bottom-4 left-4 sm:left-6 z-20 pointer-events-none">
-            <div className="glass-panel px-3.5 py-2 rounded-lg border border-white/10 flex items-center gap-3">
+          {/* Interactive Floating Badge with Quick Model Cycle Button */}
+          <div className="absolute bottom-4 left-4 sm:left-6 z-20">
+            <button
+              onClick={cycleModel}
+              className="glass-panel px-3.5 py-2 rounded-xl border border-white/15 hover:border-[#d4ff00] flex items-center gap-3 transition-all duration-200 text-left cursor-pointer group shadow-xl"
+              title="Click to cycle through 3D models"
+            >
               <span className="w-2 h-2 rounded-full bg-[#d4ff00] animate-pulse" />
               <div>
                 <span className="block text-[10px] font-mono-tech tracking-widest text-[#d4ff00] uppercase font-semibold">
-                  INTERACTIVE SCULPTURE
+                  3D SCULPTURE ({activeModelIndex + 1}/{AVAILABLE_3D_MODELS.length})
                 </span>
-                <span className="text-xs font-mono-tech text-white/80">
-                  VOID RUNNER // OBSIDIAN
+                <span className="text-xs font-mono-tech text-white/90 group-hover:text-white flex items-center gap-1.5">
+                  {activeModel.name}
+                  <RefreshCw size={11} className="text-[#d4ff00] group-hover:rotate-180 transition-transform duration-500" />
                 </span>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>

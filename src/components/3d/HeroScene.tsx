@@ -3,9 +3,13 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Float, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import { SneakerModel } from './SneakerModel';
+import { LoadedGLTFModel } from './LoadedGLTFModel';
+import { AVAILABLE_3D_MODELS } from '../../data/modelsRegistry';
+import type { Available3DModel } from '../../data/modelsRegistry';
 
 interface HeroSceneProps {
   colorway?: string;
+  selectedModel?: Available3DModel;
   className?: string;
 }
 
@@ -67,6 +71,7 @@ export const Hero3DFallback: React.FC = () => {
 
 export const HeroScene: React.FC<HeroSceneProps> = ({
   colorway = 'Obsidian',
+  selectedModel = AVAILABLE_3D_MODELS[0],
   className = 'w-full h-full'
 }) => {
   const [hasWebGLError, setHasWebGLError] = useState(false);
@@ -92,31 +97,31 @@ export const HeroScene: React.FC<HeroSceneProps> = ({
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 1.25;
+          gl.toneMappingExposure = 1.3;
         }}
         onError={() => setHasWebGLError(true)}
       >
         <PerspectiveCamera makeDefault position={[0, 0.4, 4.8]} fov={42} />
 
         {/* Studio Lighting Arrangement */}
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={0.45} />
 
         {/* Key Light: Crisp warm studio fill */}
         <directionalLight
           position={[5, 6, 4]}
-          intensity={1.8}
+          intensity={2.0}
           castShadow
           shadow-mapSize={[1024, 1024]}
           shadow-bias={-0.0001}
         />
 
         {/* Fill Light: Soft cool bounce */}
-        <directionalLight position={[-5, 2, -2]} intensity={0.7} color="#8a9ab0" />
+        <directionalLight position={[-5, 2, -2]} intensity={0.8} color="#8a9ab0" />
 
         {/* Rim Light: High-impact Electric Lime back-edge accent */}
         <spotLight
           position={[0, 4, -4]}
-          intensity={3.5}
+          intensity={3.8}
           color="#d4ff00"
           angle={0.6}
           penumbra={0.9}
@@ -133,14 +138,22 @@ export const HeroScene: React.FC<HeroSceneProps> = ({
               floatIntensity={isReducedMotion ? 0 : 0.7}
               floatingRange={[-0.1, 0.1]}
             >
-              {/* Sneaker oriented in a dynamic 3/4 hero presentation angle */}
+              {/* 3D object dynamic presentation */}
               <group position={[0, 0.1, 0]}>
-                <SneakerModel
-                  colorwayName={colorway}
-                  scale={0.92}
-                  rotation={[0.15, -0.65, 0.1]}
-                  isFloating={false}
-                />
+                {selectedModel.isProcedural || !selectedModel.path ? (
+                  <SneakerModel
+                    colorwayName={colorway}
+                    scale={0.92}
+                    rotation={[0.15, -0.65, 0.1]}
+                    isFloating={false}
+                  />
+                ) : (
+                  <LoadedGLTFModel
+                    modelPath={selectedModel.path}
+                    targetSize={2.4}
+                    rotation={[0.15, -0.65, 0.1]}
+                  />
+                )}
               </group>
             </Float>
 

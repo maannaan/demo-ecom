@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw root model drops (tracked under public/models/)
+/footwear_fantasia/
+/moon_shoes/
+/scanned_adidas_sports_shoe/
