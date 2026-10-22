@@ -86,14 +86,18 @@ npm run preview
 
 ---
 
-## 📦 How to Provide Custom 3D Models (`.glb` / `.gltf`)
+## 📦 Integrated 3D Models
 
-NOIR//FORM features a dual-layer 3D system:
-1. **Built-in Procedural Model**: The VOID RUNNER sneaker renders automatically out of the box with zero external dependencies.
-2. **Custom Model Drop-In**: If you have custom 3D fashion models:
-   - Export your model as a binary GLTF (`.glb`).
-   - Place your file into `/public/models/void-runner.glb` or `/public/models/sneaker.glb`.
-   - Recommended specs: 20k–60k polygons, PBR materials (Roughness, Metallic, Normal maps).
+The application includes both procedural CAD models and photorealistic 3D scanned models ready for inspection:
+
+1. **VOID RUNNER (Concept CAD)**: Built-in procedural high-fidelity multi-geometry sneaker with real-time Obsidian, Bone, and Signal colorways.
+2. **FOOTWEAR FANTASIA**: High-detail stylized sneaker sculpture with leather grain, metallic hardware, and normal maps (`/models/footwear_fantasia/scene.gltf`).
+3. **SCANNED SPORTS SHOE**: Photogrammetry athletic performance sneaker scan with real-world fabric weave and rubber sole texture (`/models/scanned_adidas_sports_shoe/scene.gltf`).
+4. **MOON SHOES**: Sculptural futuristic lunar silhouette with oversized structural soles (`/models/moon_shoes/scene.gltf`).
+
+### 3D Model Switcher
+- In the **Hero Section**, click the floating badge on the bottom left of the 3D canvas to cycle through all 4 models in real time with floating physics and pointer parallax.
+- In the **3D CAD Showroom (Spotlight Section)**, click any model pill in the top-right toolbar to immediately mount and frame that model in 360° with OrbitControls, zoom, wireframe toggle, and camera reset!
 
 ---
 
